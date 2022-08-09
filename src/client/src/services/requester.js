@@ -1,16 +1,21 @@
-const request = async (method, url, data) => {
+const request = async (method, url, data, additionalHeader) => {
     try {
 
         const authString = localStorage.getItem('auth');
-        const auth = JSON.parse(authString || '{}')
+        const auth = JSON.parse(authString || '{}');
+        // console.log('authstring:');
+        // console.log(authString);
         let headers = {
             'X-Parse-Application-Id': '2RjXe6GFaplaqVLYhu2JBYiLToMm76B6VJgEniSI',
             'X-Parse-REST-API-Key': 'CnBKsMP7jL5FmN3dG0sY0e4uQzDswVzrAePKV8X5',
-            'X-Parse-Revocable-Session': '1',
         }
 
-        if (auth.accessToken) {
-            headers['X-Authorization'] = auth.accessToken;
+        if (additionalHeader) {
+            headers['X-Parse-Revocable-Session'] = '1';
+        }
+
+        if (auth.sessionToken) {
+            headers['X-Parse-Session-Token'] = auth.sessionToken;
         }
 
         let buildRequest;
@@ -31,6 +36,8 @@ const request = async (method, url, data) => {
         const response = await buildRequest;
 
         const result = await response.json();
+
+        console.log(result);
 
         return result;
 

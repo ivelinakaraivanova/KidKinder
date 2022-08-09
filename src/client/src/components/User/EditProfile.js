@@ -1,12 +1,47 @@
-import { useContext } from "react";
+import { useContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
-import * as authService from "../../services/authService";
+import * as authService from '../../services/authService';
 
-export const Register = () => {
+
+export const EditProfile = () => {
     const navigate = useNavigate();
-    const { userLogin } = useContext(AuthContext);
+    const { user, userEdit } = useContext(AuthContext);
+    // const {objectId, imageUrl, username, email, firstName, lastName, position} = user;
+    
+    const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
+
+    // useEffect(() => {
+    //     async function fetchData() {
+    //         const currentUserData = await authService.getUserById(user.objectId);
+    //         setData(currentUserData);
+    //     }
+
+    //     fetchData();
+    // }, []);
+
+    useEffect(() => {
+        authService.getUserById(user.objectId)
+            .then((currentUserData) => {
+                setData(currentUserData);
+            })
+    }, []);
+
+
+
+
+    // const onSubmit = (e) => {
+    //     e.preventDefault();
+
+    //     const userData = Object.fromEntries(new FormData(e.target));
+    //     authService.editUser(user.objectId, userData)
+    //         .then(result => {
+    //             userEdit(user.objectId, result);
+    //             navigate(`/profile`)
+    //         });
+    // }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -17,25 +52,18 @@ export const Register = () => {
         const email = formData.get('email');
         const firstName = formData.get('first-name');
         const lastName = formData.get('last-name');
-        const password = formData.get('password');
-        const confirmPassword = formData.get('confirm-password');
         const imageUrl = formData.get('image-url');
-        const position = formData.get('position');
-
-        if (confirmPassword !== password) {
-            return;
-        };
-
-        authService.register(username, email, firstName, lastName, password, imageUrl, position)
-            .then(authData => {
-                userLogin(authData);
-                navigate('/');
+       
+        authService.editUser(data.objectId, username, email, firstName, lastName, imageUrl)
+            .then(() => {
+                userEdit(username, email, firstName, lastName, imageUrl);
+                navigate('/profile');
             });
     }
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Register", subName: "Register" }} />
+            <HeaderPage pageInfo={{ name: "Edit Profile", subName: "Edit Profile" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">
@@ -43,7 +71,7 @@ export const Register = () => {
                         <div className="col-lg-9">
                             <div className="card border-0">
                                 <div className="card-header bg-secondary text-center p-4">
-                                    <h1 className="text-white m-0">Register</h1>
+                                    <h1 className="text-white m-0">Edit Profile</h1>
                                 </div>
                                 <div className="card-body rounded-bottom bg-primary">
                                     <form onSubmit={onSubmit}>
@@ -59,6 +87,7 @@ export const Register = () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Username"
                                                     required="required"
+                                                    defaultValue={data.username}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -72,6 +101,7 @@ export const Register = () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Your Email"
                                                     required="required"
+                                                    defaultValue={data.email}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -85,6 +115,7 @@ export const Register = () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="First Name"
                                                     required="required"
+                                                    defaultValue={data.firstName}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -98,32 +129,7 @@ export const Register = () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Last Name"
                                                     required="required"
-                                                />
-                                            </div>
-                                            <div className="form-group form-group-cell">
-                                                <label htmlFor="password" className="text-white">
-                                                    Password:
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    id="password"
-                                                    name="password"
-                                                    className="form-control border-0 p-4"
-                                                    placeholder="Enter Password"
-                                                    required="required"
-                                                />
-                                            </div>
-                                            <div className="form-group form-group-cell">
-                                                <label htmlFor="confirm-password" className="text-white">
-                                                    Confirm Password:
-                                                </label>
-                                                <input
-                                                    type="password"
-                                                    id="confirm-password"
-                                                    name="confirm-password"
-                                                    className="form-control border-0 p-4"
-                                                    placeholder="Confirm Passowrd"
-                                                    required="required"
+                                                    defaultValue={data.lastName}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -136,29 +142,35 @@ export const Register = () => {
                                                     name="image-url"
                                                     className="form-control border-0 p-4"
                                                     placeholder="Image Url"
+                                                    defaultValue={data.imageUrl}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
                                                 <label htmlFor="position" className="text-white">
                                                     You Are a:
                                                 </label>
-                                                <select
+                                                <input
+                                                    type="text"
                                                     id="position"
                                                     name="position"
-                                                    className="custom-select border-0 px-4"
-                                                    style={{ height: 47 }}
-                                                >
-                                                    <option value="parent">Parent</option>
-                                                    <option value="teacher">Teacher</option>
-                                                </select>
+                                                    className="form-control border-0 p-4"
+                                                    disabled
+                                                    defaultValue={data.position}
+                                                />
                                             </div>
                                         </div>
-                                        <div>
+                                        <div id="edit-profile-btn">
                                             <button
-                                                className="btn btn-secondary btn-block bigger-font-size border-0 py-3"
+                                                className="btn btn-secondary mt-1 py-3 px-5"
                                                 type="submit"
                                             >
-                                                Register
+                                                Cancel
+                                            </button>
+                                            <button
+                                                className="btn btn-secondary mt-1 py-3 px-5"
+                                                type="submit"
+                                            >
+                                                Update
                                             </button>
                                         </div>
                                     </form>
