@@ -3,7 +3,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
-    const { user, userLogout } = useContext(AuthContext);
+    const { user } = useContext(AuthContext);
 
     return (
 
@@ -35,9 +35,7 @@ export const Navbar = () => {
                         <a href="about.html" className="nav-item nav-link">
                             About
                         </a>
-                        <a href="class.html" className="nav-item nav-link">
-                            Classes
-                        </a>
+                        <Link to="/courses" className="nav-item nav-link">Courses</Link>
                         <a href="team.html" className="nav-item nav-link">
                             Teachers
                         </a>
@@ -48,9 +46,7 @@ export const Navbar = () => {
                             ? <div id="user">
                                 {user.position === 'teacher'
                                     ?
-                                    <a href="create.html" className="nav-item nav-link">
-                                        Create Class
-                                    </a>
+                                    <Link to="/create" className="nav-item nav-link">Create Course</Link>
                                     : ''
                                 }
                                 <Link to="/profile" className="nav-item nav-link">My Profile</Link>

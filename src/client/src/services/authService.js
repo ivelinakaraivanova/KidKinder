@@ -34,6 +34,8 @@ export const register = (username, email, firstName, lastName, password, imageUr
 
 // export const getCurrentUser = () => request.get(`${baseUrl}users/me`)
 
+// todo: userService
+
 export const getUserById = (userId) => request.get(`${baseUrl}users/${userId}`);
 
 export const editUser = (userId, username, email, firstName, lastName,imageUrl) => 
