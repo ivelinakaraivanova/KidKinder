@@ -5,7 +5,7 @@ export const HeaderPage = ({pageInfo}) => {
         <div className="container-fluid bg-primary mb-5">
             <div
                 className="d-flex flex-column align-items-center justify-content-center"
-                style={{ minHeight: 400 }}
+                style={{ minHeight: 200 }}
             >
                 <h3 className="display-3 font-weight-bold text-white">{pageInfo.name}</h3>
                 <div className="d-inline-flex text-white">

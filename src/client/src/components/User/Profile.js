@@ -3,10 +3,10 @@ import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import * as authService from "../../services/authService";
+import { Footer } from "../Footer/Footer";
 
 export const Profile = () => {
     const { user } = useContext(AuthContext);
-    // const {objectId, imageUrl, username, email, firstName, lastName, position} = user;
     
     const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
 
@@ -71,6 +71,8 @@ export const Profile = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

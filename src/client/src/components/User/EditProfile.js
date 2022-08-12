@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from '../../services/authService';
+import { Footer } from "../Footer/Footer";
 
 
 export const EditProfile = () => {
@@ -180,6 +181,8 @@ export const EditProfile = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

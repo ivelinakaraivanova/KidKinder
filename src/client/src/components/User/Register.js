@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
+import { Footer } from "../Footer/Footer";
 
 export const Register = () => {
     const navigate = useNavigate();
@@ -28,7 +29,7 @@ export const Register = () => {
 
         authService.register(username, email, firstName, lastName, password, imageUrl, position)
             .then(authData => {
-                userLogin(authData);
+                userLogin(authData); //TODO: user doesn't login
                 navigate('/');
             });
     }
@@ -168,6 +169,8 @@ export const Register = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

@@ -36,7 +36,7 @@ const request = async (method, url, data, additionalHeader) => {
         const response = await buildRequest;
 
         const result = await response.json();
-
+        console.log('from requester')
         console.log(result);
 
         return result;

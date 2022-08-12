@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
+import { Footer } from "../Footer/Footer";
 
 export const Login = () => {
     const navigate = useNavigate();
@@ -81,6 +82,8 @@ export const Login = () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

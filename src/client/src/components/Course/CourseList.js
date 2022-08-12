@@ -3,6 +3,7 @@ import { CourseContext } from "../../context/CourseContext";
 import { HeaderPage } from "../Header/HeaderPage";
 import { CourseItem } from "./CourseItem";
 import * as courseService from '../../services/courseService';
+import { Footer } from "../Footer/Footer";
 
 
 export const CourseList = () => {
@@ -44,6 +45,8 @@ export const CourseList = () => {
                     <h1 className="mb-4">There are no courses available.</h1>
                 </div>
             }
+
+            <Footer />
         </>
     );
 }

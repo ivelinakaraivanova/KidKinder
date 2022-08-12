@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 import { Facility } from "./Facility";
 
 export const Hero = () => {
@@ -15,7 +17,7 @@ export const Hero = () => {
                             sit. Ipsum dolor no justo dolor et, lorem ut dolor erat dolore sed ipsum
                             at ipsum nonumy amet. Clita lorem dolore sed stet et est justo dolore.
                         </p>
-                        <a href="contact.html" className="btn btn-secondary mt-1 py-3 px-5">Contact Us</a>
+                        <Link to="/contact" className="btn btn-secondary mt-1 py-3 px-5">Contact Us</Link>
                     </div>
                     <div className="col-lg-6 text-center text-lg-right">
                         <img className="img-fluid mt-5" src="img/header.png" alt="" />
@@ -24,6 +26,8 @@ export const Hero = () => {
             </div>
 
             <Facility />
+
+            <Footer />
         </>
     );
 }

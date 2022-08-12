@@ -32,16 +32,10 @@ export const Navbar = () => {
 
                     <div className="navbar-nav font-weight-bold mx-auto py-0">
                         <Link to="/" className="nav-item nav-link active">Home</Link>
-                        <a href="about.html" className="nav-item nav-link">
-                            About
-                        </a>
+                        <Link to="/about" className="nav-item nav-link">About</Link>
                         <Link to="/courses" className="nav-item nav-link">Courses</Link>
-                        <a href="team.html" className="nav-item nav-link">
-                            Teachers
-                        </a>
-                        <a href="contact.html" className="nav-item nav-link">
-                            Contact
-                        </a>
+                        <Link to="/teachers" className="nav-item nav-link">Teachers</Link>
+                        <Link to="/contact" className="nav-item nav-link">Contact</Link>
                         {user.username
                             ? <div id="user">
                                 {user.position === 'teacher'

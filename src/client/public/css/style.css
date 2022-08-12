@@ -11104,3 +11104,11 @@ a.text-dark:focus {
   display: flex;
   justify-content: right;
 }
+
+.d-inline-flex-contact {
+  display: inline-flex !important;
+}
+
+.book-form {
+  padding-left: 0;
+}

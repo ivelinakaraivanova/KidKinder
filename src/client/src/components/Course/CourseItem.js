@@ -8,7 +8,6 @@ export const CourseItem = ({course}) => {
     useEffect(() => {
         authService.getUserById(course.ownerId)
             .then(result => {
-
                 setData({teacherName: `${result.firstName} ${result.lastName}`});
             });
     }, []);
@@ -17,7 +16,7 @@ export const CourseItem = ({course}) => {
 
         <div className="col-lg-4 mb-5">
             <div className="card border-0 bg-light shadow-sm pb-2">
-                <img className="card-img-top mb-2" src="img/class-1.jpg" alt="" />
+                <img className="card-img-top mb-2" src={course.imageUrl} alt="Course pic" />
                 <div className="card-body text-center">
                     <h4 className="card-title">{course.title}</h4>
                     <h6 className="card-subtitle">Teacher: {data.teacherName}</h6>

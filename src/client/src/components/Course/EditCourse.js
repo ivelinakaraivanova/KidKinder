@@ -1,21 +1,22 @@
 import { useContext, useEffect, useState } from "react";
+import { useNavigate, useParams } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
-import {CourseContext} from '../../context/CourseContext'
 import * as courseService from '../../services/courseService';
-import { AuthContext } from "../../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 
-export const CreateCourse= () => {
-    // const { courseAdd } = useContext(CourseContext);
+export const EditCourse = () => {
     const navigate = useNavigate();
-    const { user } = useContext(AuthContext);
+    const { courseId } = useParams();
+    const [currentCourse, setCurrentCourse] = useState({});
 
-    const [data, setData] = useState({});
-
-    
+    useEffect(() => {
+        courseService.getOne(courseId)
+            .then(courseData => {
+                setCurrentCourse(courseData);
+            })
+    }, []);
 
     const onSubmit = (e) => {
-
         e.preventDefault();
 
         const formData = new FormData(e.target);
@@ -29,25 +30,18 @@ export const CreateCourse= () => {
         const startDate = formData.get('start-date');
         const startTime = formData.get('start-time');
         const endTime = formData.get('end-time');
-        const ownerId = user.objectId;
-        // const endTime = new Date(new Date().getTime((Date.parse(`${formData.get('course-date')} ${formData.get('end-time')}`))));
 
-        const courseData = {title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime, ownerId};
-        console.log('courseData');
-        console.log(courseData);
-        
-        courseService.create(courseData)
-            .then(result => {
-                // console.log('courseData result');
-                // console.log(result);
-                navigate('/courses');
-                // courseContext.courseAdd(result);
+        const courseData = { title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime };
+
+        courseService.edit(courseId, courseData)
+            .then(() => {
+                navigate(`/courses/${courseId}`);
             });
     }
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Create Course", subName: "Create Course" }} />
+            <HeaderPage pageInfo={{ name: "Edit Course", subName: "Edit Course" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">
@@ -55,7 +49,7 @@ export const CreateCourse= () => {
                         <div className="col-lg-9">
                             <div className="card border-0">
                                 <div className="card-header bg-secondary text-center p-4">
-                                    <h1 className="text-white m-0">Create a Course</h1>
+                                    <h1 className="text-white m-0">Edit Course</h1>
                                 </div>
                                 <div className="card-body rounded-bottom bg-primary">
                                     <form onSubmit={onSubmit}>
@@ -71,6 +65,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Class title"
                                                     required="required"
+                                                    defaultValue={currentCourse.title}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -84,6 +79,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Course Image Url"
                                                     // required="required"
+                                                    defaultValue={currentCourse.imageUrl}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -99,7 +95,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Course Description"
                                                     required="required"
-                                                    defaultValue={""}
+                                                    defaultValue={currentCourse.description}
                                                 />
                                             </div>
                                             <div className="form-group-double-cell">
@@ -114,6 +110,7 @@ export const CreateCourse= () => {
                                                         className="form-control border-0 p-4"
                                                         placeholder="Age Group"
                                                         required="required"
+                                                        defaultValue={currentCourse.ageGroup}
                                                     />
                                                 </div>
                                                 <div className="form-group form-group-cell two-rows">
@@ -129,6 +126,7 @@ export const CreateCourse= () => {
                                                         min={5}
                                                         max={20}
                                                         required="required"
+                                                        defaultValue={currentCourse.seats}
                                                     />
                                                 </div>
                                             </div>
@@ -143,6 +141,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Tution Fee"
                                                     required="required"
+                                                    defaultValue={currentCourse.tuitionFee}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -156,6 +155,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Enter Starting Date"
                                                     required="required"
+                                                    defaultValue={currentCourse.startDate}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -169,6 +169,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="Start Time"
                                                     required="required"
+                                                    defaultValue={currentCourse.startTime}
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -182,6 +183,7 @@ export const CreateCourse= () => {
                                                     className="form-control border-0 p-4"
                                                     placeholder="End Time"
                                                     required="required"
+                                                    defaultValue={currentCourse.endTime}
                                                 />
                                             </div>
                                         </div>
@@ -190,7 +192,7 @@ export const CreateCourse= () => {
                                                 className="btn btn-secondary btn-block bigger-font-size border-0 py-3"
                                                 type="submit"
                                             >
-                                                Create Class
+                                                Save
                                             </button>
                                         </div>
                                     </form>
@@ -200,6 +202,8 @@ export const CreateCourse= () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

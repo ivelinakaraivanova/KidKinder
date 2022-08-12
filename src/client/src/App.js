@@ -1,5 +1,5 @@
-import { Routes, Route } from 'react-router-dom';
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { Navbar } from './components/Header/Navbar';
 import { Register } from './components/User/Register';
 import { Login } from './components/User/Login';
@@ -12,6 +12,10 @@ import { CourseList } from './components/Course/CourseList';
 import { CourseDetails } from './components/Course/CourseDetails';
 import { CreateCourse } from './components/Course/CreateCourse';
 import { CourseProvider } from './context/CourseContext';
+import { EditCourse } from './components/Course/EditCourse';
+import { TeamList } from './components/Team/TeamList';
+import { About } from './components/About/About';
+import { Contact } from './components/Contact/Contact';
 
 function App() {
     return (
@@ -22,6 +26,7 @@ function App() {
                     <main>
                         <Routes>
                             <Route path='/' element={<Hero />} />
+                            <Route path='/about' element={<About />} />
                             <Route path='/register' element={<Register />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/logout' element={<Logout />} />
@@ -30,6 +35,9 @@ function App() {
                             <Route path='/courses' element={<CourseList />} />
                             <Route path='/courses/:courseId' element={<CourseDetails />} />
                             <Route path='/create' element={<CreateCourse />} />
+                            <Route path='/courses/edit/:courseId' element={<EditCourse />} />
+                            <Route path='/teachers' element={<TeamList />} />
+                            <Route path='/contact' element={<Contact />} />
                         </Routes>
                     </main>
                 </CourseProvider>

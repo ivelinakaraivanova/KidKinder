@@ -11,7 +11,7 @@ export const CourseProvider = ({ children }) => {
     useEffect(() => {
         courseService.getAll()
             .then(result => {
-                console.log(result.results);
+                // console.log(result.results);
                 setCourses(result.results);
             });
     }, []);
