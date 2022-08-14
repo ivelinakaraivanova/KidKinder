@@ -6,7 +6,7 @@ import * as authService from "../../services/authService";
 import { Footer } from "../Footer/Footer";
 
 export const Login = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate(); // TODO: controlled form
     const { userLogin } = useContext(AuthContext);
 
     const onSubmit = (e) => {
@@ -25,7 +25,7 @@ export const Login = () => {
     };
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Login", subName: "Login" }} />
+            <HeaderPage pageInfo={{ name: "Login", subName: "login" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">

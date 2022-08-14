@@ -28,15 +28,18 @@ export const Register = () => {
         };
 
         authService.register(username, email, firstName, lastName, password, imageUrl, position)
-            .then(authData => {
-                userLogin(authData); //TODO: user doesn't login
-                navigate('/');
+            .then(_ => {
+                authService.login(username, password)
+                    .then(authData => {
+                        userLogin(authData);
+                        navigate('/');
+                    })
             });
     }
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Register", subName: "Register" }} />
+            <HeaderPage pageInfo={{ name: "Register", subName: "register" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">

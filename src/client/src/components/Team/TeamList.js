@@ -17,7 +17,7 @@ export const TeamList = () => {
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Our teachers", subName: "Our teachers" }} />
+            <HeaderPage pageInfo={{ name: "Our teachers", subName: "teachers" }} />
 
             <div className="container-fluid pt-5">
                 <div className="container">

@@ -19,7 +19,7 @@ export const Profile = () => {
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "My Profile", subName: "My Profile" }} />
+            <HeaderPage pageInfo={{ name: "My Profile", subName: 'profile' }} />
             
             <div className="container-fluid py-5">
                 <div className="container">
@@ -27,7 +27,7 @@ export const Profile = () => {
                         <div className="col-lg-4 border">
                             <img
                                 className="img-fluid rounded mb-5 mb-lg-0"
-                                src={data.imageUrl}
+                                src={data.imageUrl || "./img/blank-profile-picture.png"}
                                 alt="My pic here"
                             />
                         </div>

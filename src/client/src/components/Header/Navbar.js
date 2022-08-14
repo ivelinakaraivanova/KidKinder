@@ -35,18 +35,20 @@ export const Navbar = () => {
                         <Link to="/about" className="nav-item nav-link">About</Link>
                         <Link to="/courses" className="nav-item nav-link">Courses</Link>
                         <Link to="/teachers" className="nav-item nav-link">Teachers</Link>
-                        <Link to="/contact" className="nav-item nav-link">Contact</Link>
                         {user.username
-                            ? <div id="user">
+                            ?
+                            <div id="user">
                                 {user.position === 'teacher'
                                     ?
-                                    <Link to="/create" className="nav-item nav-link">Create Course</Link>
-                                    : ''
+                                    <Link to="/courses/myCourses" className="nav-item nav-link">My Courses</Link>
+                                    :
+                                    <Link to="/courses/myBookings" className="nav-item nav-link">My Bookings</Link>
                                 }
                                 <Link to="/profile" className="nav-item nav-link">My Profile</Link>
                                 <Link to="/logout" className="nav-item nav-link">Logout</Link>
                             </div>
-                            : <div id="guest">
+                            :
+                            <div id="guest">
                                 <Link to="/login" className="nav-item nav-link">Login</Link>
                                 <Link to="/register" className="nav-item nav-link">Register</Link>
                             </div>

@@ -1,18 +1,16 @@
 import { useContext, useEffect, useState } from "react";
 import { HeaderPage } from "../Header/HeaderPage";
-import {CourseContext} from '../../context/CourseContext'
+import {CourseContext} from '../../context/MyBookingsContext'
 import * as courseService from '../../services/courseService';
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
+import { Footer } from "../Footer/Footer";
 
 export const CreateCourse= () => {
-    // const { courseAdd } = useContext(CourseContext);
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
 
-    const [data, setData] = useState({});
-
-    
+    // const [data, setData] = useState({});
 
     const onSubmit = (e) => {
 
@@ -30,9 +28,8 @@ export const CreateCourse= () => {
         const startTime = formData.get('start-time');
         const endTime = formData.get('end-time');
         const ownerId = user.objectId;
-        // const endTime = new Date(new Date().getTime((Date.parse(`${formData.get('course-date')} ${formData.get('end-time')}`))));
 
-        const courseData = {title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime, ownerId};
+        const courseData = {title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime, ownerId, bookedSeatsCount: 0};
         console.log('courseData');
         console.log(courseData);
         
@@ -40,14 +37,13 @@ export const CreateCourse= () => {
             .then(result => {
                 // console.log('courseData result');
                 // console.log(result);
-                navigate('/courses');
-                // courseContext.courseAdd(result);
+                navigate('/courses/myCourses');
             });
     }
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Create Course", subName: "Create Course" }} />
+            <HeaderPage pageInfo={{ name: "Create Course", subName: "create" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">
@@ -190,8 +186,8 @@ export const CreateCourse= () => {
                                                 className="btn btn-secondary btn-block bigger-font-size border-0 py-3"
                                                 type="submit"
                                             >
-                                                Create Class
-                                            </button>
+                                                Create Course 
+                                            </button> 
                                         </div>
                                     </form>
                                 </div>
@@ -200,6 +196,8 @@ export const CreateCourse= () => {
                     </div>
                 </div>
             </div>
+
+            <Footer />
         </>
     );
 }

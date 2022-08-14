@@ -31,14 +31,9 @@ export const register = (username, email, firstName, lastName, password, imageUr
         position
     }, 2);
 
-
-// export const getCurrentUser = () => request.get(`${baseUrl}users/me`)
-
-// todo: userService
-
 export const getUserById = (userId) => request.get(`${baseUrl}users/${userId}`);
 
 export const getAllUsers = async () => (await request.get(`${baseUrl}users`)).results;
 
-export const editUser = (userId, username, email, firstName, lastName,imageUrl) => 
-    request.put(`${baseUrl}users/${userId}`, {username, email, firstName, lastName,imageUrl});
+export const editUser = (userId, username, email, firstName, lastName, imageUrl) =>
+    request.put(`${baseUrl}users/${userId}`, { username, email, firstName, lastName, imageUrl });

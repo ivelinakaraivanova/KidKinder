@@ -38,10 +38,10 @@ export const EditCourse = () => {
                 navigate(`/courses/${courseId}`);
             });
     }
-
+    
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Edit Course", subName: "Edit Course" }} />
+            <HeaderPage pageInfo={{ name: "Edit Course", subName: `courses/edit/${currentCourse.objectId}` }} />
 
             <div className="container-fluid py-5">
                 <div className="container">

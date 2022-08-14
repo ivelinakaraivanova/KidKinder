@@ -64,7 +64,7 @@ export const EditProfile = () => {
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Edit Profile", subName: "Edit Profile" }} />
+            <HeaderPage pageInfo={{ name: "Edit Profile", subName: "profile/edit" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">
@@ -171,7 +171,7 @@ export const EditProfile = () => {
                                                 className="btn btn-secondary mt-1 py-3 px-5"
                                                 type="submit"
                                             >
-                                                Update
+                                                Save
                                             </button>
                                         </div>
                                     </form>

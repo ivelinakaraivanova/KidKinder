@@ -16,7 +16,7 @@ export const CourseItem = ({course}) => {
 
         <div className="col-lg-4 mb-5">
             <div className="card border-0 bg-light shadow-sm pb-2">
-                <img className="card-img-top mb-2" src={course.imageUrl} alt="Course pic" />
+                <img className="card-img-top mb-2" src={course.imageUrl || "./img/blank-course-picture.jpg"} alt="Course pic" />
                 <div className="card-body text-center">
                     <h4 className="card-title">{course.title}</h4>
                     <h6 className="card-subtitle">Teacher: {data.teacherName}</h6>

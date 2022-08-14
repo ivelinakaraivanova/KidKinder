@@ -7,7 +7,7 @@ export const TeamItem = ({teacher}) => {
                 className="position-relative overflow-hidden mb-4"
                 style={{ borderRadius: "100%" }}
             >
-                <img className="img-fluid w-100" src={teacher.imageUrl} alt="" />
+                <img className="img-fluid w-100" src={teacher.imageUrl || "./img/blank-profile-picture.png"} alt="" />
             </div>
             <h4>{`${teacher.firstName} ${teacher.lastName}`}</h4>
             <i>Teacher</i>

@@ -13,7 +13,9 @@ export const HeaderPage = ({pageInfo}) => {
                         <Link className="text-white" to="/">Home</Link>
                     </p>
                     <p className="m-0 px-2">/</p>
-                    <p className="m-0">{pageInfo.subName}</p>
+                    <p className="m-0">
+                        <Link className="text-white" to={`/${pageInfo?.subName}`}>{pageInfo?.name}</Link>
+                    </p> 
                 </div>
             </div>
         </div>
