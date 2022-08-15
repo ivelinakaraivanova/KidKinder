@@ -5,6 +5,7 @@ import * as courseService from '../../services/courseService';
 import { Footer } from "../Footer/Footer";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
+import { Loading } from "../Loading/Loading";
 
 
 export const MyCourses = () => {
@@ -13,14 +14,31 @@ export const MyCourses = () => {
     // const { courses } = useContext(CourseContext);
 
     const [data, setData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
     
     useEffect(() => {
         courseService.getAll()
         .then((result) => {
             const myCourses = result.filter(c => c.ownerId === user.objectId);
             setData(myCourses);
+            setIsLoading(false);
+        }).catch(err => {
+            setError(err);
         });
     }, []);
+
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "My courses", subName: "courses/myCourses" }} />
+                <Loading />
+            </>
+        );
+    }
 
     return (
 

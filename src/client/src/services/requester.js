@@ -3,8 +3,7 @@ const request = async (method, url, data, additionalHeader) => {
 
         const authString = localStorage.getItem('auth');
         const auth = JSON.parse(authString || '{}');
-        // console.log('authstring:');
-        // console.log(authString);
+        
         let headers = {
             'X-Parse-Application-Id': '2RjXe6GFaplaqVLYhu2JBYiLToMm76B6VJgEniSI',
             'X-Parse-REST-API-Key': 'CnBKsMP7jL5FmN3dG0sY0e4uQzDswVzrAePKV8X5',
@@ -35,14 +34,26 @@ const request = async (method, url, data, additionalHeader) => {
 
         const response = await buildRequest;
 
-        const result = await response.json();
-        console.log('from requester')
-        console.log(result);
+        if (response.ok === false) {
+            const error = await response.json();
+            throw new Error(error.message);
+        }
+        try {
+            const result = await response.json()
+            return result;
+        } catch (err) {
+            return response;
+        }
 
-        return result;
+        // const result = await response.json();
+        // console.log('from requester')
+        // console.log(result);
 
-    } catch (error) {
-        console.log(error);
+        // return result;
+
+    } catch (err) {
+        console.error(err.message);
+        throw err;
     }
 };
 

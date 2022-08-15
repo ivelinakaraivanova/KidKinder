@@ -9,6 +9,7 @@ export const MyBookingsContext = createContext();
 export const MyBookingsProvider = ({ children }) => {
     const { user } = useContext(AuthContext);
     const [myBookings, setMyBookings] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
 
     useEffect(() => {
         (async () => {
@@ -34,6 +35,7 @@ export const MyBookingsProvider = ({ children }) => {
             }
 
             setMyBookings(myExtendedBookings);
+            setIsLoading(false);
         })();
     }, []);
 
@@ -44,7 +46,7 @@ export const MyBookingsProvider = ({ children }) => {
     };
 
     return (
-        <MyBookingsContext.Provider value={{ myBookings, unbook }}>
+        <MyBookingsContext.Provider value={{ myBookings, unbook, isLoading }}>
             {children}
         </MyBookingsContext.Provider>
     );

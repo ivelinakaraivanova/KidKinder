@@ -3,16 +3,25 @@ import { useNavigate, useParams } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import * as courseService from '../../services/courseService';
 import { Footer } from "../Footer/Footer";
+import { Loading } from "../Loading/Loading";
 
 export const EditCourse = () => {
     const navigate = useNavigate();
     const { courseId } = useParams();
     const [currentCourse, setCurrentCourse] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     useEffect(() => {
         courseService.getOne(courseId)
             .then(courseData => {
                 setCurrentCourse(courseData);
+                setIsLoading(false);
+            }).catch(err => {
+                setError(err);
             })
     }, []);
 
@@ -37,6 +46,15 @@ export const EditCourse = () => {
             .then(() => {
                 navigate(`/courses/${courseId}`);
             });
+    }
+
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "Our courses", subName: 'courses' }} />
+                <Loading />
+            </>
+        );
     }
     
     return (

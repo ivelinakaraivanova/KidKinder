@@ -5,7 +5,7 @@ import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from '../../services/authService';
 import { Footer } from "../Footer/Footer";
-
+import { Loading } from "../Loading/Loading";
 
 export const EditProfile = () => {
     const navigate = useNavigate();
@@ -13,53 +13,47 @@ export const EditProfile = () => {
     // const {objectId, imageUrl, username, email, firstName, lastName, position} = user;
     
     const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
-
-    // useEffect(() => {
-    //     async function fetchData() {
-    //         const currentUserData = await authService.getUserById(user.objectId);
-    //         setData(currentUserData);
-    //     }
-
-    //     fetchData();
-    // }, []);
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     useEffect(() => {
         authService.getUserById(user.objectId)
             .then((currentUserData) => {
                 setData(currentUserData);
+                setIsLoading(false);
+            }).catch(err => {
+                setError(err);
             })
     }, []);
-
-
-
-
-    // const onSubmit = (e) => {
-    //     e.preventDefault();
-
-    //     const userData = Object.fromEntries(new FormData(e.target));
-    //     authService.editUser(user.objectId, userData)
-    //         .then(result => {
-    //             userEdit(user.objectId, result);
-    //             navigate(`/profile`)
-    //         });
-    // }
-
+    
     const onSubmit = (e) => {
         e.preventDefault();
-
+        
         const formData = new FormData(e.target);
-
+        
         const username = formData.get('username');
         const email = formData.get('email');
         const firstName = formData.get('first-name');
         const lastName = formData.get('last-name');
         const imageUrl = formData.get('image-url');
-       
+        
         authService.editUser(data.objectId, username, email, firstName, lastName, imageUrl)
-            .then(() => {
-                userEdit(username, email, firstName, lastName, imageUrl);
-                navigate('/profile');
-            });
+        .then(() => {
+            userEdit(username, email, firstName, lastName, imageUrl);
+            navigate('/profile');
+        });
+    }
+    
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "Edit Profile", subName: "profile/edit" }} />
+                <Loading />
+            </>
+        );
     }
 
     return (

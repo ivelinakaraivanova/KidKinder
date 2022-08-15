@@ -4,6 +4,7 @@ import { HeaderPage } from "../Header/HeaderPage";
 import { CourseItem } from "./CourseItem";
 import * as courseService from '../../services/courseService';
 import { Footer } from "../Footer/Footer";
+import { Loading } from "../Loading/Loading";
 
 
 export const CourseList = () => {
@@ -11,15 +12,33 @@ export const CourseList = () => {
     // const { courses } = useContext(CourseContext);
 
     const [data, setData] = useState({});
-    
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
+
     useEffect(() => {
         courseService.getAll()
-        .then((result) => {
-            setData(result);
-        });
+            .then(result => {
+                setData(result);
+                setIsLoading(false);
+            })
+            .catch(err => {
+                setError(err);
+            });
     }, []);
 
     // TODO: filter by type
+
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "Our courses", subName: 'courses' }} />
+                <Loading />
+            </>
+        );
+    }
 
     return (
 
@@ -38,7 +57,7 @@ export const CourseList = () => {
                         </div>
                         <div className="row">
                             {data.map(course => <CourseItem key={course.objectId} course={course} />)}
-                            
+
                         </div>
                     </div>
                 </div>

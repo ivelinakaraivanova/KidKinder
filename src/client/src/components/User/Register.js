@@ -14,17 +14,17 @@ export const Register = () => {
 
         const formData = new FormData(e.target);
 
-        const username = formData.get('username');
-        const email = formData.get('email');
-        const firstName = formData.get('first-name');
-        const lastName = formData.get('last-name');
-        const password = formData.get('password');
-        const confirmPassword = formData.get('confirm-password');
-        const imageUrl = formData.get('image-url');
-        const position = formData.get('position');
+        const username = formData.get('username').trim();
+        const email = formData.get('email').trim();
+        const firstName = formData.get('first-name').trim();
+        const lastName = formData.get('last-name').trim();
+        const password = formData.get('password').trim();
+        const confirmPassword = formData.get('confirm-password').trim();
+        const imageUrl = formData.get('image-url').trim();
+        const position = formData.get('position').trim();
 
         if (confirmPassword !== password) {
-            return;
+            return alert('Passwords don\'t match!');
         };
 
         authService.register(username, email, firstName, lastName, password, imageUrl, position)

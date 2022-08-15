@@ -6,6 +6,7 @@ import * as authService from "../../services/authService";
 import * as bookService from "../../services/bookService";
 import { AuthContext } from "../../context/AuthContext";
 import { Footer } from "../Footer/Footer";
+import { Loading } from "../Loading/Loading";
 
 export const CourseDetails = () => {
     const navigate = useNavigate();
@@ -13,6 +14,11 @@ export const CourseDetails = () => {
     const { courseId } = useParams();
 
     const [data, setData] = useState({});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     useEffect(() => {
         (async () => {
@@ -20,6 +26,9 @@ export const CourseDetails = () => {
             const teacherData = await authService.getUserById(currentCourseData.ownerId);
 
             setData({ ...currentCourseData, teacherName: `${teacherData.firstName} ${teacherData.lastName}` });
+            setIsLoading(false);
+        }).catch(err => {
+            setError(err);
         })();
     }, []);
 
@@ -41,7 +50,7 @@ export const CourseDetails = () => {
 
         const formData = new FormData(e.target);
 
-        const childName = formData.get('child-name');
+        const childName = formData.get('child-name').trim();
         const userId = user.objectId;
         const courseId = data.objectId;
 
@@ -49,6 +58,15 @@ export const CourseDetails = () => {
         await bookService.create(bookData);
         await courseService.addBookedSeats(courseId, 1);
         navigate(`/courses/myBookings`);
+    }
+
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "Course Details", subName: `courses/${data.objectId}` }} />
+                <Loading />
+            </>
+        );
     }
 
     return (
@@ -112,7 +130,7 @@ export const CourseDetails = () => {
                                 </div>
                                 : ''
                             }
-                            {user.username && !isOwner && data.seats > data.bookedSeatsCount
+                            {user.username && user.position === 'parent' && data.seats > data.bookedSeatsCount
                                 ?
                                 <div className="col-lg-10 mb-2 book-form">
                                     <div className="contact-form">
@@ -142,7 +160,7 @@ export const CourseDetails = () => {
                                 </div>
                                 : ''
                             }
-                            {user.username && !isOwner && data.seats <= data.bookedSeatsCount
+                            {user.username && user.position === 'parent' && data.seats <= data.bookedSeatsCount
                                 ?
                                 <div className="col-lg-10 mb-2 book-form">
                                     <div className="control-group">

@@ -52,7 +52,7 @@ export const BookingItem = ({ booking }) => {
                         <div className="col-6 py-1">{booking.childName}</div>
                     </div>
                 </div>
-                <Link to="" className="btn btn-primary mt-2 py-2 px-4" onClick={onDelete}>Unbook</Link>
+                <Link to="" className="btn btn-primary px-4 mx-auto mb-4" onClick={onDelete}>Unbook</Link>
             </div>
         </div>
     );

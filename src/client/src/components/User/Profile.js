@@ -4,23 +4,41 @@ import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
 import * as authService from "../../services/authService";
 import { Footer } from "../Footer/Footer";
+import { Loading } from "../Loading/Loading";
 
 export const Profile = () => {
     const { user } = useContext(AuthContext);
-    
+
     const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
+    const [isLoading, setIsLoading] = useState(true);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     useEffect(() => {
         authService.getUserById(user.objectId)
             .then((currentUserData) => {
                 setData(currentUserData);
+                setIsLoading(false);
+            }).catch(err => {
+                setError(err);
             })
     }, []);
 
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "Course Details", subName: `courses/${data.objectId}` }} />
+                <Loading />
+            </>
+        );
+    }
+
     return (
         <>
-            <HeaderPage pageInfo={{ name: "My Profile", subName: 'profile' }} />
-            
+            <HeaderPage pageInfo={{ name: "Course Details", subName: `courses/${data.objectId}` }} />
+
             <div className="container-fluid py-5">
                 <div className="container">
                     <div className="row align-items-center justify-content-around">

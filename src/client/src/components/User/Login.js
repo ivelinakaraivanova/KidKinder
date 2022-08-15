@@ -1,5 +1,5 @@
 import { useContext } from "react";
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import * as authService from "../../services/authService";
@@ -69,13 +69,13 @@ export const Login = () => {
                                     <p className="bigger-font-size text-white p-custom" align="center">
                                         If you don't have registration,{" "}
                                     </p>
-                                    <a
-                                        href="register.html"
+                                    <Link
+                                        to="/register"
                                         align="center"
                                         className="nav-item nav-link text-white bigger-font-size"
                                     >
                                         <strong>click here</strong>!
-                                    </a>
+                                    </Link>
                                 </div>
                             </div>
                         </div>

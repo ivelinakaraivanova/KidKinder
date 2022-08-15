@@ -7,10 +7,20 @@ import { AuthContext } from "../../context/AuthContext";
 import * as courseService from '../../services/courseService';
 import { BookingItem } from "./BookingItem";
 import * as authService from "../../services/authService";
+import { Loading } from "../Loading/Loading";
 
 export const MyBookings = () => {
     // const { user } = useContext(AuthContext);
-    const { myBookings } = useContext(MyBookingsContext);
+    const { myBookings, isLoading } = useContext(MyBookingsContext);
+
+    if (isLoading) {
+        return (
+            <>
+                <HeaderPage pageInfo={{ name: "My Bookings", subName: "courses/myBookings" }} />
+                <Loading />
+            </>
+        );
+    }
 
     return (
         <>

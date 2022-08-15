@@ -8,7 +8,7 @@ export const login = (username, password) =>
 export const logout = async (accessToken) => {
     try {
         const response = await fetch(`${baseUrl}logout`, {
-            mode: "cors",
+            // mode: "cors",
             headers: {
                 'X-Parse-Session-Token': accessToken
             }
