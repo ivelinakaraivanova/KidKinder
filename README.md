@@ -1,6 +1,38 @@
-# Getting Started with Create React App
+# KidKinder
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This project represents a platform for various kid's courses. It can be used by a user who is not logged in (as a guest) and by a teacher or parent as logged in user. Depending on the role of the user, a course can be viewed, created, edited, booked, unbooked, deleted.
+
+## This is an application for:
+* accounts for teachers and parents
+* kid's courses
+* kid's courses bookings
+
+## The application has:
+### Public part (pages accessible without authentication)
+* Home - contains basic information about the platform
+* About - the idea of the platform and how to work with it
+* Courses - list of courses with some baseic details
+* Teachers - list of registered teachers
+* Login - form where the registered user can login
+* Register - form for registering a new user
+
+### Private part (pages available for registered users)
+* for users who are registered as a teacher
+
+
+
+
+
+
+## This project was built with:
+* [React.js](https://reactjs.org)
+* [Back4app](https://www.back4app.com/)
+* [HTML Codex](https://htmlcodex.com)
+
+and bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+
+
 
 ## Available Scripts
 
