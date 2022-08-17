@@ -20,7 +20,6 @@ import { MyBookingsProvider } from './context/MyBookingsContext';
 import { ErrorBoundary } from './components/Common/ErrorBoundary';
 
 function App() {
-    // TODO: route guard
 
     return (
         <AuthProvider>

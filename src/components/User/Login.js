@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
@@ -6,8 +6,9 @@ import * as authService from "../../services/authService";
 import { Footer } from "../Footer/Footer";
 
 export const Login = () => {
-    const navigate = useNavigate(); // TODO: controlled form
+    const navigate = useNavigate();
     const { userLogin } = useContext(AuthContext);
+    const [error, setError] = useState(null);
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -19,8 +20,8 @@ export const Login = () => {
                 userLogin(authData);
                 navigate('/');
             })
-            .catch(() => {
-                navigate('/');
+            .catch(err => {
+                setError(err);
             });
     };
     return (
@@ -35,6 +36,11 @@ export const Login = () => {
                                 <div className="card-header bg-secondary text-center p-4">
                                     <h1 className="text-white m-0">Login</h1>
                                 </div>
+                                {error
+                                    ? <div className="alert alert-danger mb-0 bigger-allert-font-size text-center" role="alert">
+                                        Unsuccessful login. {error.message}
+                                    </div>
+                                    : ""}
                                 <div className="card-body rounded-bottom bg-primary p-5">
                                     <form onSubmit={onSubmit}>
                                         <div className="form-group">

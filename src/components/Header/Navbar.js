@@ -9,14 +9,14 @@ export const Navbar = () => {
 
         <div className="container-fluid bg-light position-relative shadow">
             <nav className="navbar navbar-expand-lg bg-light navbar-light py-3 py-lg-0 px-0 px-lg-5">
-                <a
-                    href="index.html"
+                <Link
+                    to="/"
                     className="navbar-brand font-weight-bold text-secondary"
                     style={{ fontSize: 50 }}
                 >
                     <i className="flaticon-043-teddy-bear" />
                     <span className="text-primary">KidKinder</span>
-                </a>
+                </Link>
                 <button
                     type="button"
                     className="navbar-toggler"

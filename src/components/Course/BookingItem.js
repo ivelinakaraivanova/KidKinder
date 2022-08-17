@@ -7,7 +7,6 @@ import * as bookService from '../../services/bookService';
 export const BookingItem = ({ booking }) => {
     const { unbook } = useContext(MyBookingsContext);
     const navigate = useNavigate();
-    // const [data, setData] = useState({});
 
     const onDelete = async () => {
         const confirmation = window.confirm('Are you shure you want to unbook this course?');
@@ -21,7 +20,7 @@ export const BookingItem = ({ booking }) => {
 
         <div className="col-lg-4 mb-5">
             <div className="card border-0 bg-light shadow-sm pb-2">
-                <img className="card-img-top mb-2" src={booking.courseImageUrl || "./img/blank-course-picture.jpg"} alt="Course pic" />
+                <img className="card-img-top mb-2" src={booking.courseImageUrl || "../img/blank.jpg"} alt="Course pic" />
                 <div className="card-body text-center">
                     <h4 className="card-title">{booking.courseTitle}</h4>
                     <h6 className="card-subtitle">Teacher: {booking.teacherName}</h6>

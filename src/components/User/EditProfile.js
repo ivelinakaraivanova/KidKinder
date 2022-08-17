@@ -11,7 +11,7 @@ export const EditProfile = () => {
     const navigate = useNavigate();
     const { user, userEdit } = useContext(AuthContext);
     // const {objectId, imageUrl, username, email, firstName, lastName, position} = user;
-    
+
     const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
@@ -28,25 +28,25 @@ export const EditProfile = () => {
                 setError(err);
             })
     }, []);
-    
+
     const onSubmit = (e) => {
         e.preventDefault();
-        
+
         const formData = new FormData(e.target);
-        
+
         const username = formData.get('username');
         const email = formData.get('email');
         const firstName = formData.get('first-name');
         const lastName = formData.get('last-name');
         const imageUrl = formData.get('image-url');
-        
+
         authService.editUser(data.objectId, username, email, firstName, lastName, imageUrl)
-        .then(() => {
-            userEdit(username, email, firstName, lastName, imageUrl);
-            navigate('/profile');
-        });
+            .then(() => {
+                userEdit(username, email, firstName, lastName, imageUrl);
+                navigate('/profile');
+            });
     }
-    
+
     if (isLoading) {
         return (
             <>
@@ -156,7 +156,7 @@ export const EditProfile = () => {
                                         </div>
                                         <div id="edit-profile-btn">
                                             <button
-                                                className="btn btn-secondary mt-1 py-3 px-5"
+                                                className="btn btn-secondary mt-1 mr-2 py-3 px-5"
                                                 type="submit"
                                             >
                                                 Cancel

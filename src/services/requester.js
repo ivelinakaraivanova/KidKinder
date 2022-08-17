@@ -36,7 +36,7 @@ const request = async (method, url, data, additionalHeader) => {
 
         if (response.ok === false) {
             const error = await response.json();
-            throw new Error(error.message);
+            throw new Error(error.error);
         }
         try {
             const result = await response.json()
@@ -44,12 +44,6 @@ const request = async (method, url, data, additionalHeader) => {
         } catch (err) {
             return response;
         }
-
-        // const result = await response.json();
-        // console.log('from requester')
-        // console.log(result);
-
-        // return result;
 
     } catch (err) {
         console.error(err.message);

@@ -9,7 +9,7 @@ import { Loading } from "../Loading/Loading";
 export const Profile = () => {
     const { user } = useContext(AuthContext);
 
-    const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
+    const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     if (error) {
@@ -29,7 +29,7 @@ export const Profile = () => {
     if (isLoading) {
         return (
             <>
-                <HeaderPage pageInfo={{ name: "Course Details", subName: `courses/${data.objectId}` }} />
+                <HeaderPage pageInfo={{ name: "My Profile", subName: `profile` }} />
                 <Loading />
             </>
         );
@@ -37,7 +37,7 @@ export const Profile = () => {
 
     return (
         <>
-            <HeaderPage pageInfo={{ name: "Course Details", subName: `courses/${data.objectId}` }} />
+            <HeaderPage pageInfo={{ name: "My Profile", subName: `profile` }} />
 
             <div className="container-fluid py-5">
                 <div className="container">

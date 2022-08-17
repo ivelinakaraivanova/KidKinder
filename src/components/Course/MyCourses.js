@@ -11,24 +11,22 @@ import { Loading } from "../Loading/Loading";
 export const MyCourses = () => {
     const { user } = useContext(AuthContext);
 
-    // const { courses } = useContext(CourseContext);
-
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     if (error) {
         throw error;
     }
-    
+
     useEffect(() => {
         courseService.getAll()
-        .then((result) => {
-            const myCourses = result.filter(c => c.ownerId === user.objectId);
-            setData(myCourses);
-            setIsLoading(false);
-        }).catch(err => {
-            setError(err);
-        });
+            .then((result) => {
+                const myCourses = result.filter(c => c.ownerId === user.objectId);
+                setData(myCourses);
+                setIsLoading(false);
+            }).catch(err => {
+                setError(err);
+            });
     }, []);
 
     if (isLoading) {
@@ -61,13 +59,13 @@ export const MyCourses = () => {
                         </div>
                         <div className="row">
                             {data.map(course => <CourseItem key={course.objectId} course={course} />)}
-                            
+
                         </div>
                     </div>
                 </div>
                 :
                 <div className="text-center pb-5 pt-5">
-                    <h1 className="mb-4">There are no courses available.</h1>
+                    <h1 className="mb-4">You have no courses yet.</h1>
                 </div>
             }
 

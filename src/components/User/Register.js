@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
@@ -8,6 +8,10 @@ import { Footer } from "../Footer/Footer";
 export const Register = () => {
     const navigate = useNavigate();
     const { userLogin } = useContext(AuthContext);
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     const onSubmit = (e) => {
         e.preventDefault();
@@ -23,6 +27,10 @@ export const Register = () => {
         const imageUrl = formData.get('image-url').trim();
         const position = formData.get('position').trim();
 
+        if (password.length < 5) {
+            return alert('Password must be at least 5 characters!');
+        }
+
         if (confirmPassword !== password) {
             return alert('Passwords don\'t match!');
         };
@@ -34,6 +42,8 @@ export const Register = () => {
                         userLogin(authData);
                         navigate('/');
                     })
+            }).catch(err => {
+                setError(err);
             });
     }
 

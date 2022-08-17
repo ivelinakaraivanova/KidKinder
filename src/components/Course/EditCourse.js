@@ -56,7 +56,7 @@ export const EditCourse = () => {
             </>
         );
     }
-    
+
     return (
         <>
             <HeaderPage pageInfo={{ name: "Edit Course", subName: `courses/edit/${currentCourse.objectId}` }} />

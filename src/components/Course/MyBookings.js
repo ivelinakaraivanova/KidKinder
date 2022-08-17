@@ -43,7 +43,7 @@ export const MyBookings = () => {
                 </div>
                 :
                 <div className="text-center pb-2">
-                    <h1 className="mb-4">There are no bookings available.</h1>
+                    <h1 className="mb-4">You have no bookings yet.</h1>
                 </div>
             }
 

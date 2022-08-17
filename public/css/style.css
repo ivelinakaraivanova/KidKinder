@@ -11112,3 +11112,7 @@ a.text-dark:focus {
 .book-form {
   padding-left: 0;
 }
+
+.bigger-allert-font-size {
+  font-size: 1.25rem;
+}

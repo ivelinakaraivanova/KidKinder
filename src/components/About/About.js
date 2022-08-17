@@ -4,7 +4,7 @@ import { HeaderPage } from "../Header/HeaderPage";
 export const About = () => {
     return (
         <>
-            <HeaderPage pageInfo={{ name: "About Us", subName: "About Us" }} />
+            <HeaderPage pageInfo={{ name: "About Us", subName: "about" }} />
 
             <div className="container-fluid py-5">
                 <div className="container">

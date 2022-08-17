@@ -8,7 +8,7 @@ export const Footer = () => {
                     <Link
                         to="/"
                         className="navbar-brand font-weight-bold text-primary m-0 mb-4 p-0"
-                        // style={{ fontSize: 40, lineHeight: 40 }}
+                    // style={{ fontSize: 40, lineHeight: 40 }}
                     >
                         <i className="flaticon-043-teddy-bear" />
                         <span className="text-white">KidKinder</span>
@@ -57,7 +57,7 @@ export const Footer = () => {
                         <h4 className="fa fa-map-marker-alt text-primary" />
                         <div className="pl-3">
                             <h5 className="text-white">Address</h5>
-                            <p>123 Street, New York, USA</p>
+                            <p>123 Street, Sofia, Bugaria</p>
                         </div>
                     </div>
                     <div className="d-flex">
@@ -94,10 +94,6 @@ export const Footer = () => {
                             <i className="fa fa-angle-right mr-2" />
                             Our Teachers
                         </Link>
-                        <Link className="text-white" to="/contact">
-                            <i className="fa fa-angle-right mr-2" />
-                            Contact Us
-                        </Link>
                     </div>
                 </div>
                 <div className="col-lg-4 col-md-6 mb-5">
@@ -106,42 +102,42 @@ export const Footer = () => {
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-1.jpg"
+                                src="/img/portfolio-1.jpg"
                                 alt=""
                             />
                         </div>
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-2.jpg"
+                                src="/img/portfolio-2.jpg"
                                 alt=""
                             />
                         </div>
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-3.jpg"
+                                src="/img/portfolio-3.jpg"
                                 alt=""
                             />
                         </div>
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-4.jpg"
+                                src="/img/portfolio-4.jpg"
                                 alt=""
                             />
                         </div>
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-5.jpg"
+                                src="/img/portfolio-5.jpg"
                                 alt=""
                             />
                         </div>
                         <div className="col-4">
                             <img
                                 className="img-fluid rounded bg-light p-1 mt-1"
-                                src="img/portfolio-6.jpg"
+                                src="/img/portfolio-6.jpg"
                                 alt=""
                             />
                         </div>
@@ -156,13 +152,13 @@ export const Footer = () => {
                         <Link className="text-primary font-weight-bold" to="/">
                             KidKinder
                         </Link>
-                        . All Rights Reserved. Designed by
-                        <Link
+                        . All Rights Reserved. Designed by 
+                        <a
                             className="text-primary font-weight-bold"
-                            to="https://htmlcodex.com"
+                            href="https://htmlcodex.com"
                         >
                             HTML Codex
-                        </Link>
+                        </a>
                     </p>
                 </div>
             </div>

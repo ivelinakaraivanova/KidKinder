@@ -22,13 +22,15 @@ export const CourseDetails = () => {
 
     useEffect(() => {
         (async () => {
-            const currentCourseData = await courseService.getOne(courseId);
-            const teacherData = await authService.getUserById(currentCourseData.ownerId);
+            try {
+                const currentCourseData = await courseService.getOne(courseId);
+                const teacherData = await authService.getUserById(currentCourseData.ownerId);
 
-            setData({ ...currentCourseData, teacherName: `${teacherData.firstName} ${teacherData.lastName}` });
-            setIsLoading(false);
-        }).catch(err => {
-            setError(err);
+                setData({ ...currentCourseData, teacherName: `${teacherData.firstName} ${teacherData.lastName}` });
+                setIsLoading(false);
+            } catch (err) {
+                setError(err);
+            }
         })();
     }, []);
 

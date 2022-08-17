@@ -1,16 +1,18 @@
 import { useContext, useEffect, useState } from "react";
 import { HeaderPage } from "../Header/HeaderPage";
-import {CourseContext} from '../../context/MyBookingsContext'
+import { CourseContext } from '../../context/MyBookingsContext'
 import * as courseService from '../../services/courseService';
 import { AuthContext } from "../../context/AuthContext";
 import { useNavigate } from "react-router-dom";
 import { Footer } from "../Footer/Footer";
 
-export const CreateCourse= () => {
+export const CreateCourse = () => {
     const navigate = useNavigate();
     const { user } = useContext(AuthContext);
-
-    // const [data, setData] = useState({});
+    const [error, setError] = useState(null);
+    if (error) {
+        throw error;
+    }
 
     const onSubmit = (e) => {
 
@@ -21,7 +23,7 @@ export const CreateCourse= () => {
         const title = formData.get('title');
         const imageUrl = formData.get('course-image');
         const description = formData.get('description');
-        const ageGroup = formData.get('age-group');
+        const ageGroup = formData.get('age-group'); //TODO: select type
         const seats = Number(formData.get('seats'));
         const tuitionFee = Number(formData.get('tuition-fee'));
         const startDate = formData.get('start-date');
@@ -29,15 +31,13 @@ export const CreateCourse= () => {
         const endTime = formData.get('end-time');
         const ownerId = user.objectId;
 
-        const courseData = {title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime, ownerId, bookedSeatsCount: 0};
-        console.log('courseData');
-        console.log(courseData);
-        
+        const courseData = { title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime, ownerId, bookedSeatsCount: 0 };
+
         courseService.create(courseData)
-            .then(result => {
-                // console.log('courseData result');
-                // console.log(result);
+            .then(_ => {
                 navigate('/courses/myCourses');
+            }).catch(err => {
+                setError(err);
             });
     }
 
@@ -79,7 +79,7 @@ export const CreateCourse= () => {
                                                     name="course-image"
                                                     className="form-control border-0 p-4"
                                                     placeholder="Course Image Url"
-                                                    // required="required"
+                                                // required="required"
                                                 />
                                             </div>
                                             <div className="form-group form-group-cell">
@@ -186,8 +186,8 @@ export const CreateCourse= () => {
                                                 className="btn btn-secondary btn-block bigger-font-size border-0 py-3"
                                                 type="submit"
                                             >
-                                                Create Course 
-                                            </button> 
+                                                Create Course
+                                            </button>
                                         </div>
                                     </form>
                                 </div>

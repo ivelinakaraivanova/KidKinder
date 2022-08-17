@@ -41,7 +41,6 @@ export const CourseList = () => {
     }
 
     return (
-
         <>
             <HeaderPage pageInfo={{ name: "Our courses", subName: 'courses' }} />
 
