@@ -23,7 +23,7 @@ export const CreateCourse = () => {
         const title = formData.get('title');
         const imageUrl = formData.get('course-image');
         const description = formData.get('description');
-        const ageGroup = formData.get('age-group'); //TODO: select type
+        const ageGroup = formData.get('age-group');
         const seats = Number(formData.get('seats'));
         const tuitionFee = Number(formData.get('tuition-fee'));
         const startDate = formData.get('start-date');
