@@ -1,11 +1,11 @@
 # KidKinder
 
-This project represents a platform for kid's courses. It can be used by a user who is not logged in (as a guest) and by a teacher or parent as logged in user. Depending on the role of the user, a course can be viewed, created, edited, booked, unbooked, deleted.
+This project represents a platform for kids' courses. It can be used by a user who is not logged in (as a guest) and by a teacher or parent as a logged in user. Depending on the role of the user, a course can be viewed, created, edited, booked, unbooked, deleted.
 
 ## This is an application for:
 * accounts for teachers and parents
-* kid's courses
-* kid's courses bookings
+* kids' courses
+* kids' courses bookings
 
 ## The application has:
 ### Public part (pages accessible without authentication)
@@ -56,33 +56,3 @@ The build is minified and the filenames include the hashes.\
 Your app is ready to be deployed!
 
 See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
