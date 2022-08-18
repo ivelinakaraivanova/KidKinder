@@ -13,10 +13,13 @@ export const CourseList = () => {
 
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
+    const [searchText, setSearchText] = useState("");
+    const [searchFields] = useState(["title"]);
     const [error, setError] = useState(null);
     if (error) {
         throw error;
     }
+
 
     useEffect(() => {
         courseService.getAll()
@@ -29,7 +32,18 @@ export const CourseList = () => {
             });
     }, []);
 
-    // TODO: filter by type
+    function search(items) {
+        return items.filter((item) => {
+            return searchFields.some((fieldName) => {
+                return (
+                    item[fieldName]
+                        .toString()
+                        .toLowerCase()
+                        .indexOf(searchText.toLowerCase()) > -1
+                );
+            });
+        });
+    }
 
     if (isLoading) {
         return (
@@ -54,8 +68,19 @@ export const CourseList = () => {
                             </p>
                             <h1 className="mb-4">Courses for Your Kids</h1>
                         </div>
+                        <div className="search-wrapper">
+                            <input
+                                type="search"
+                                name="search-form"
+                                id="search-form"
+                                className="search-input"
+                                placeholder="Search for..."
+                                value={searchText}
+                                onChange={(e) => setSearchText(e.target.value)}
+                            />
+                        </div>
                         <div className="row">
-                            {data.map(course => <CourseItem key={course.objectId} course={course} />)}
+                            {search(data).map(course => <CourseItem key={course.objectId} course={course} />)}
 
                         </div>
                     </div>

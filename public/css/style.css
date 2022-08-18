@@ -34,6 +34,8 @@
   --breakpoint-xl: 1200px;
   --font-family-sans-serif: "Nunito", sans-serif;
   --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --bg-offset: hsl(0, 0%, 100%);
+  --border: rgba(0, 0, 0, 0.1);
 }
 
 *,
@@ -11095,8 +11097,7 @@ a.text-dark:focus {
 }
 
 #user,
-#guest
-{
+#guest {
   display: flex;
 }
 
@@ -11115,4 +11116,54 @@ a.text-dark:focus {
 
 .bigger-allert-font-size {
   font-size: 1.25rem;
+}
+
+/* search input */
+.search-wrapper {
+  margin: 48px 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+@media (max-width: 375px) {
+  .search-input {
+    width: 100%;
+  }
+
+  .search-wrapper {
+    justify-content: start;
+    flex-wrap: wrap;
+  }
+}
+
+.search-input {
+  background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyIgZmlsbC1ydWxlPSJldmVub2RkIiBjbGlwLXJ1bGU9ImV2ZW5vZGQiPjxwYXRoIGQ9Ik0xNS44NTMgMTYuNTZjLTEuNjgzIDEuNTE3LTMuOTExIDIuNDQtNi4zNTMgMi40NC01LjI0MyAwLTkuNS00LjI1Ny05LjUtOS41czQuMjU3LTkuNSA5LjUtOS41IDkuNSA0LjI1NyA5LjUgOS41YzAgMi40NDItLjkyMyA0LjY3LTIuNDQgNi4zNTNsNy40NCA3LjQ0LS43MDcuNzA3LTcuNDQtNy40NHptLTYuMzUzLTE1LjU2YzQuNjkxIDAgOC41IDMuODA5IDguNSA4LjVzLTMuODA5IDguNS04LjUgOC41LTguNS0zLjgwOS04LjUtOC41IDMuODA5LTguNSA4LjUtOC41eiIvPjwvc3ZnPg==");
+  background-color: var(--bg-offset);
+  background-size: 16px 16px;
+  background-position: left 10px center;
+  background-repeat: no-repeat;
+  padding: 0.8em 2em;
+  padding-left: 2.7em;
+  border: 1px solid var(--border);
+  color: var(--gray);
+  box-shadow: 0px 4px 6px var(--border);
+  transition: all 0.4s cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+.search-input:hover {
+  box-shadow: 0px 0px 0px var(--border);
+}
+
+.sr-only-sr {
+  border: 0 !important;
+  clip: rect(1px, 1px, 1px, 1px) !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  height: 1px !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  padding: 0 !important;
+  position: absolute !important;
+  width: 1px !important;
+  white-space: nowrap !important;
 }
