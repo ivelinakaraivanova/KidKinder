@@ -1,12 +1,9 @@
-import { useState, useEffect, useContext } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import { Link } from "react-router-dom";
 import { MyBookingsContext } from "../../context/MyBookingsContext";
-import * as authService from "../../services/authService";
-import * as bookService from '../../services/bookService';
 
 export const BookingItem = ({ booking }) => {
     const { unbook } = useContext(MyBookingsContext);
-    const navigate = useNavigate();
 
     const onDelete = async () => {
         const confirmation = window.confirm('Are you shure you want to unbook this course?');

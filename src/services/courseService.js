@@ -4,6 +4,8 @@ const baseUrl = 'https://parseapi.back4app.com/classes/Course';
 
 export const getAll = async () => (await request.get(baseUrl)).results;
 
+export const getByOwner = async (ownerId) => (await request.get(baseUrl)).results.filter(c => c.ownerId === ownerId);
+
 export const getOne = (courseId) => request.get(`${baseUrl}/${courseId}`);
 
 export const create = (courseData) => request.post(baseUrl, courseData);

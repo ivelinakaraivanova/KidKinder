@@ -2,7 +2,7 @@ import { createContext, useEffect, useState, useContext } from "react";
 import { AuthContext } from "./AuthContext";
 import * as courseService from '../services/courseService';
 import * as bookService from '../services/bookService';
-import * as authService from "../services/authService";
+import * as userService from "../services/userService";
 
 export const MyBookingsContext = createContext();
 
@@ -18,13 +18,12 @@ export const MyBookingsProvider = ({ children }) => {
     useEffect(() => {
         (async () => {
             try {
-                const bookingsData = await bookService.getAll();
-                const myBookings = bookingsData.filter(b => b.userId === user.objectId);
+                const myBookings = await bookService.getByUser(user.objectId);
                 let myExtendedBookings = [];
 
                 for (let booking of myBookings) {
                     const course = await courseService.getOne(booking.courseId);
-                    const teacher = await authService.getUserById(course.ownerId);
+                    const teacher = await userService.getUserById(course.ownerId);
                     const extendedBooking = {
                         ...booking,
                         courseId: course.objectId,
@@ -50,7 +49,7 @@ export const MyBookingsProvider = ({ children }) => {
     const unbook = async (bookingId, courseId) => {
         await courseService.addBookedSeats(courseId, -1);
         await bookService.del(bookingId);
-        setMyBookings(myBookings.filter(b => b.objectId !== bookingId)); // TODO: service
+        setMyBookings(myBookings.filter(b => b.objectId !== bookingId));
     };
 
     return (

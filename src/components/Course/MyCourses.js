@@ -19,10 +19,9 @@ export const MyCourses = () => {
     }
 
     useEffect(() => {
-        courseService.getAll()
+        courseService.getByOwner(user.objectId)
             .then((result) => {
-                const myCourses = result.filter(c => c.ownerId === user.objectId);
-                setData(myCourses);
+                setData(result);
                 setIsLoading(false);
             }).catch(err => {
                 setError(err);

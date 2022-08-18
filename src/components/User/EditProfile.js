@@ -3,16 +3,15 @@ import { useNavigate } from "react-router-dom";
 
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
-import * as authService from '../../services/authService';
+import * as userService from '../../services/userService';
 import { Footer } from "../Footer/Footer";
 import { Loading } from "../Loading/Loading";
 
 export const EditProfile = () => {
     const navigate = useNavigate();
     const { user, userEdit } = useContext(AuthContext);
-    // const {objectId, imageUrl, username, email, firstName, lastName, position} = user;
 
-    const [data, setData] = useState({}); //objectId, imageUrl, username, email, firstName, lastName, position});
+    const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [error, setError] = useState(null);
     if (error) {
@@ -20,7 +19,7 @@ export const EditProfile = () => {
     }
 
     useEffect(() => {
-        authService.getUserById(user.objectId)
+        userService.getUserById(user.objectId)
             .then((currentUserData) => {
                 setData(currentUserData);
                 setIsLoading(false);
@@ -34,13 +33,13 @@ export const EditProfile = () => {
 
         const formData = new FormData(e.target);
 
-        const username = formData.get('username');
-        const email = formData.get('email');
-        const firstName = formData.get('first-name');
-        const lastName = formData.get('last-name');
-        const imageUrl = formData.get('image-url');
+        const username = formData.get('username').trim();
+        const email = formData.get('email').trim();
+        const firstName = formData.get('first-name').trim();
+        const lastName = formData.get('last-name').trim();
+        const imageUrl = formData.get('image-url').trim();
 
-        authService.editUser(data.objectId, username, email, firstName, lastName, imageUrl)
+        userService.editUser(data.objectId, username, email, firstName, lastName, imageUrl)
             .then(() => {
                 userEdit(username, email, firstName, lastName, imageUrl);
                 navigate('/profile');

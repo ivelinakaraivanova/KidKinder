@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { useNavigate, useParams, Link } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import * as courseService from '../../services/courseService';
-import * as authService from "../../services/authService";
+import * as userService from "../../services/userService";
 import * as bookService from "../../services/bookService";
 import { AuthContext } from "../../context/AuthContext";
 import { Footer } from "../Footer/Footer";
@@ -24,7 +24,7 @@ export const CourseDetails = () => {
         (async () => {
             try {
                 const currentCourseData = await courseService.getOne(courseId);
-                const teacherData = await authService.getUserById(currentCourseData.ownerId);
+                const teacherData = await userService.getUserById(currentCourseData.ownerId);
 
                 setData({ ...currentCourseData, teacherName: `${teacherData.firstName} ${teacherData.lastName}` });
                 setIsLoading(false);

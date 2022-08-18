@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
-import * as authService from "../../services/authService";
-import { Loading } from "../Loading/Loading";
+import * as userService from "../../services/userService";
 
 export const CourseItem = ({ course }) => {
     const [data, setData] = useState({});
@@ -11,7 +10,7 @@ export const CourseItem = ({ course }) => {
     }
 
     useEffect(() => {
-        authService.getUserById(course.ownerId)
+        userService.getUserById(course.ownerId)
             .then(result => {
                 setData({ teacherName: `${result.firstName} ${result.lastName}` });
             }).catch(err => {

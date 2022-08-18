@@ -30,10 +30,3 @@ export const register = (username, email, firstName, lastName, password, imageUr
         imageUrl,
         position
     }, 2);
-
-export const getUserById = (userId) => request.get(`${baseUrl}users/${userId}`);
-
-export const getAllUsers = async () => (await request.get(`${baseUrl}users`)).results;
-
-export const editUser = (userId, username, email, firstName, lastName, imageUrl) =>
-    request.put(`${baseUrl}users/${userId}`, { username, email, firstName, lastName, imageUrl });

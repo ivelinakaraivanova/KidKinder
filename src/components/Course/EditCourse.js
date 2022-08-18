@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { HeaderPage } from "../Header/HeaderPage";
 import * as courseService from '../../services/courseService';
@@ -30,15 +30,15 @@ export const EditCourse = () => {
 
         const formData = new FormData(e.target);
 
-        const title = formData.get('title');
-        const imageUrl = formData.get('course-image');
-        const description = formData.get('description');
-        const ageGroup = formData.get('age-group');
+        const title = formData.get('title').trim();
+        const imageUrl = formData.get('course-image').trim();
+        const description = formData.get('description').trim();
+        const ageGroup = formData.get('age-group').trim();
         const seats = Number(formData.get('seats'));
         const tuitionFee = Number(formData.get('tuition-fee'));
-        const startDate = formData.get('start-date');
-        const startTime = formData.get('start-time');
-        const endTime = formData.get('end-time');
+        const startDate = formData.get('start-date').trim();
+        const startTime = formData.get('start-time').trim();
+        const endTime = formData.get('end-time').trim();
 
         const courseData = { title, imageUrl, description, ageGroup, seats, tuitionFee, startDate, startTime, endTime };
 

@@ -1,16 +1,11 @@
-import { useState, useEffect, useContext } from "react";
-import { MyBookingsContext, MyBookingsProvider } from "../../context/MyBookingsContext";
+import { useContext } from "react";
+import { MyBookingsContext } from "../../context/MyBookingsContext";
 import { HeaderPage } from "../Header/HeaderPage";
-import * as bookService from '../../services/bookService';
 import { Footer } from "../Footer/Footer";
-import { AuthContext } from "../../context/AuthContext";
-import * as courseService from '../../services/courseService';
 import { BookingItem } from "./BookingItem";
-import * as authService from "../../services/authService";
 import { Loading } from "../Loading/Loading";
 
 export const MyBookings = () => {
-    // const { user } = useContext(AuthContext);
     const { myBookings, isLoading } = useContext(MyBookingsContext);
 
     if (isLoading) {

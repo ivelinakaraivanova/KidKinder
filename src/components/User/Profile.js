@@ -2,7 +2,7 @@ import { useContext, useEffect, useState } from "react";
 import { HeaderPage } from "../Header/HeaderPage";
 import { AuthContext } from "../../context/AuthContext";
 import { Link } from "react-router-dom";
-import * as authService from "../../services/authService";
+import * as userService from "../../services/userService";
 import { Footer } from "../Footer/Footer";
 import { Loading } from "../Loading/Loading";
 
@@ -17,7 +17,7 @@ export const Profile = () => {
     }
 
     useEffect(() => {
-        authService.getUserById(user.objectId)
+        userService.getUserById(user.objectId)
             .then((currentUserData) => {
                 setData(currentUserData);
                 setIsLoading(false);

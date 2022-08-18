@@ -1,5 +1,4 @@
-import { useState, useEffect, useContext } from "react";
-import { CourseContext } from "../../context/MyBookingsContext";
+import { useState, useEffect } from "react";
 import { HeaderPage } from "../Header/HeaderPage";
 import { CourseItem } from "./CourseItem";
 import * as courseService from '../../services/courseService';
@@ -9,8 +8,6 @@ import { Loading } from "../Loading/Loading";
 
 export const CourseList = () => {
 
-    // const { courses } = useContext(CourseContext);
-
     const [data, setData] = useState({});
     const [isLoading, setIsLoading] = useState(true);
     const [searchText, setSearchText] = useState("");
@@ -19,7 +16,6 @@ export const CourseList = () => {
     if (error) {
         throw error;
     }
-
 
     useEffect(() => {
         courseService.getAll()

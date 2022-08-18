@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { TeamItem } from "./TeamItem";
 import { HeaderPage } from "../Header/HeaderPage";
-import * as authService from "../../services/authService";
+import * as userService from "../../services/userService";
 import { Footer } from "../Footer/Footer";
 import { Loading } from "../Loading/Loading";
 
@@ -14,10 +14,9 @@ export const TeamList = () => {
     }
 
     useEffect(() => {
-        authService.getAllUsers()
+        userService.getAllTeachers()
             .then((result) => {
-                const teachersTeam = result.filter(t => t.position === 'teacher');
-                setData(teachersTeam);
+                setData(result);
                 setIsLoading(false);
             }).catch(err => {
                 setError(err);
