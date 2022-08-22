@@ -15,11 +15,11 @@ export const AuthProvider = ({children}) => {
     }
 
     const userEdit = (username, email, firstName, lastName, imageUrl) => {
-        setAuth({...auth, username, email, firstName, lastName, imageUrl}); //state => state.map(u => u.objectId === userId ? userData : u));
+        setAuth({...auth, username, email, firstName, lastName, imageUrl});
     }
 
     return (
-        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, isAuthenticated: !!auth.accessToken, userEdit }}>
+        <AuthContext.Provider value={{ user: auth, userLogin, userLogout, isAuthenticated: !!auth.sessionToken, userEdit }}>
             {children}
         </AuthContext.Provider>
     );

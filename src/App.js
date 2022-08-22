@@ -18,6 +18,7 @@ import { MyCourses } from './components/Course/MyCourses';
 import { MyBookings } from './components/Course/MyBookings';
 import { MyBookingsProvider } from './context/MyBookingsContext';
 import { ErrorBoundary } from './components/Common/ErrorBoundary';
+import { PrivateRoute } from './components/Common/PrivateRoute';
 
 function App() {
 
@@ -33,18 +34,35 @@ function App() {
                             <Route path='/register' element={<Register />} />
                             <Route path='/login' element={<Login />} />
                             <Route path='/logout' element={<Logout />} />
-                            <Route path='/profile' element={<Profile />} />
-                            <Route path='/profile/edit' element={<EditProfile />} />
+                            <Route path='/profile' element={
+                                <PrivateRoute>
+                                    <Profile />
+                                </PrivateRoute>} />
+                            <Route path='/profile/edit' element={
+                                <PrivateRoute>
+                                    <EditProfile />
+                                </PrivateRoute>} />
                             <Route path='/courses' element={<CourseList />} />
                             <Route path='/courses/:courseId' element={<CourseDetails />} />
-                            <Route path='/create' element={<CreateCourse />} />
-                            <Route path='/courses/edit/:courseId' element={<EditCourse />} />
+                            <Route path='/create' element={
+                                <PrivateRoute>
+                                    <CreateCourse />
+                                </PrivateRoute>} />
+                            <Route path='/courses/edit/:courseId' element={
+                                <PrivateRoute>
+                                    <EditCourse />
+                                </PrivateRoute>} />
                             <Route path='/teachers' element={<TeamList />} />
-                            <Route path='/courses/myCourses' element={<MyCourses />} />
+                            <Route path='/courses/myCourses' element={
+                                <PrivateRoute>
+                                    <MyCourses />
+                                </PrivateRoute>} />
                             <Route path='/courses/myBookings' element={
-                                <MyBookingsProvider>
-                                    <MyBookings />
-                                </MyBookingsProvider>
+                                <PrivateRoute>
+                                    <MyBookingsProvider>
+                                        <MyBookings />
+                                    </MyBookingsProvider>
+                                </PrivateRoute>
                             } />
                         </Routes>
                     </ErrorBoundary>

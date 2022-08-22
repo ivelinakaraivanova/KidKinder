@@ -1,5 +1,5 @@
 import { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, NavLink } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export const Navbar = () => {
@@ -31,26 +31,26 @@ export const Navbar = () => {
                 >
 
                     <div className="navbar-nav font-weight-bold mx-auto py-0">
-                        <Link to="/" className="nav-item nav-link active">Home</Link>
-                        <Link to="/about" className="nav-item nav-link">About</Link>
-                        <Link to="/courses" className="nav-item nav-link">Courses</Link>
-                        <Link to="/teachers" className="nav-item nav-link">Teachers</Link>
+                        <NavLink to="/" className="nav-item nav-link" activeClassName="active">Home</NavLink>
+                        <NavLink to="/about" className="nav-item nav-link" activeClassName="active">About</NavLink>
+                        <NavLink to="/courses" className="nav-item nav-link" activeClassName="active">Courses</NavLink>
+                        <NavLink to="/teachers" className="nav-item nav-link" activeClassName="active">Teachers</NavLink>
                         {user.username
                             ?
                             <div id="user">
                                 {user.position === 'teacher'
                                     ?
-                                    <Link to="/courses/myCourses" className="nav-item nav-link">My Courses</Link>
+                                    <NavLink to="/courses/myCourses" className="nav-item nav-link" activeClassName="active">My Courses</NavLink>
                                     :
-                                    <Link to="/courses/myBookings" className="nav-item nav-link">My Bookings</Link>
+                                    <NavLink to="/courses/myBookings" className="nav-item nav-link" activeClassName="active">My Bookings</NavLink>
                                 }
-                                <Link to="/profile" className="nav-item nav-link">My Profile</Link>
-                                <Link to="/logout" className="nav-item nav-link">Logout</Link>
+                                <NavLink to="/profile" className="nav-item nav-link" activeClassName="active">My Profile</NavLink>
+                                <NavLink to="/logout" className="nav-item nav-link" activeClassName="active">Logout</NavLink>
                             </div>
                             :
                             <div id="guest">
-                                <Link to="/login" className="nav-item nav-link">Login</Link>
-                                <Link to="/register" className="nav-item nav-link">Register</Link>
+                                <NavLink to="/login" className="nav-item nav-link" activeClassName="active">Login</NavLink>
+                                <NavLink to="/register" className="nav-item nav-link" activeClassName="active">Register</NavLink>
                             </div>
                         }
                     </div>
